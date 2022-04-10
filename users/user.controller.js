@@ -14,6 +14,7 @@ router.delete("/:id", _delete);
 module.exports = router;
 
 function authenticate(req, res, next) {
+    console.log(req.body);
     userService
         .authenticate(req.body)
         .then(user =>
@@ -26,7 +27,7 @@ function authenticate(req, res, next) {
 
 function register(req, res, next) {
     userService
-        .create(req.body)
+        .create(req.body.user)
         .then(() => res.json({}))
         .catch(err => next(err));
 }
